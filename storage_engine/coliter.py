@@ -57,7 +57,7 @@ def __generateColFileName() -> str:
 
 def __getCollectionNameForDisk(collection: Collection) -> str:
     query = f""" 
-            time_stamp = it,
+            time_stamp,
             db_name &eq "{collection.parent}", 
             col_name &eq "{collection.col_name}"
             """

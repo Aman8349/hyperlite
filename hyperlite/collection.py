@@ -285,11 +285,11 @@ class Collections:
                 # Fetching or create new Collection
                 print("Fetching or create new Collection")
                 query = f"""
-                        time_stamp = it,
+                        time_stamp,
                         db_name &eq "{db_name}",
                         col_name &eq "{col_name}"
                         """
-                result = Collections.meta_collection.readOne(parser.hyperql_parser(query))
+                result = Collections.meta_collection.readOne(parser.parser(query))
                 if not result:
                     print("Getting new collection because collection is not in ram and also on a disk")
                     return Collections.create_new_collection(col_name, db_name)
@@ -302,11 +302,11 @@ class Collections:
                     return result
         else:
             query = f"""
-                    time_stamp = it,
+                    time_stamp,
                     db_name &eq "{db_name}",
                     col_name &eq "{col_name}"
                     """
-            result = Collections.meta_collection.readOne(parser.hyperql_parser(query))
+            result = Collections.meta_collection.readOne(parser.parser(query))
             if not result:
                 print("Getting new collection: @no database found")
                 return Collections.create_new_collection(col_name, db_name)
